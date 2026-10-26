@@ -268,6 +268,39 @@ file : **Bagging_Boosting_Model2**
     
     Quantile XGBoost therefore provided prediction accuracy similar to the strongest point-prediction model while also communicating uncertainty around the estimated property value.
 
+---
+### 5. Model Pipeline and Streamlit Deployment
+
+file: **Pipeline_Streamlit_Cloud**
+
+After comparing the predictive models, the standard **XGBoost Regressor** was selected for deployment because it provided the strongest overall performance for predicting a single property sale price. The final model achieved approximately an 11.5% average percentage error, a $129,701 average dollar error, and explained about 88.6% of the variation in unseen property sale prices.
+
+The same `cleaned_data_eda.csv` dataset and predictor features used during the Bagging and Boosting analysis were retained to maintain consistency between model development and deployment.
+
+A Scikit-learn pipeline was created to combine the required preprocessing steps with the final trained XGBoost model. Numerical features were passed through the pipeline without scaling because XGBoost is a tree-based model, while categorical features were transformed using one-hot encoding. Missing-value handling was also included to make the pipeline more robust when receiving new property data.
+
+The complete preprocessing and prediction pipeline was saved as `model.pkl` using Joblib. This allows the trained model to be loaded and reused without retraining.
+
+A Streamlit application was then developed to provide an interactive interface for the model. Users can enter property characteristics, location information, and market conditions, and the application automatically:
+
+1. Collects the user inputs.
+2. Converts them into the same structure used during model training.
+3. Applies the preprocessing pipeline.
+4. Passes the processed features into the trained XGBoost model.
+5. Returns the estimated property sale price.
+
+The deployment files include:
+
+- `app.py` — Streamlit web application
+- `model.pkl` — saved preprocessing and XGBoost prediction pipeline
+- `requirements.txt` — Python packages required to run the application
+
+The application was deployed through Streamlit Community Cloud using the files stored in the GitHub repository.
+
+**Live Deployed Model:**  
+https://californiarealestatedatascience-wct97ezpa4x4gpzaxcrale.streamlit.app/
+
+The deployment workflow is documented for development and reproducibility purposes. End users do not need to run the notebook, train the model, or install Python; they can use the deployed application directly through the Streamlit website.
 
 ---
 ## Summary
