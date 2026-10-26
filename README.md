@@ -9,6 +9,9 @@ The goal is to build a model that can estimate property value for both on-market
 
 The project progresses from data preprocessing and exploratory data analysis to baseline linear regression, tree-based ensemble models, gradient boosting, and quantile regression for prediction uncertainty.
 
+**Deployed Lived Model**:
+https://californiarealestatedatascience-wct97ezpa4x4gpzaxcrale.streamlit.app/
+
 ## Project Goal
 
 To build a robust, user-focused machine learning model that accurately predicts the close price of any single-family residential property in California using only features available to consumers—enabling integration into a web application for real-time property value estimation.
