@@ -9,8 +9,15 @@ The goal is to build a model that can estimate property value for both on-market
 
 The project progresses from data preprocessing and exploratory data analysis to baseline linear regression, tree-based ensemble models, gradient boosting, and quantile regression for prediction uncertainty.
 
+
+Data_Processing_idx.ipynb
+&darr;
+
+
 **Deployed Lived Model**:
 https://californiarealestatedatascience-wct97ezpa4x4gpzaxcrale.streamlit.app/
+
+
 
 ## Project Goal
 
@@ -20,7 +27,7 @@ To build a robust, user-focused machine learning model that accurately predicts 
 
 ## Data Access and Preparation
 
-### Data Source
+## Data Source
 
 - **Provider** : California Regional Multiple Listing Service (CRMLS)
 - **Data Access** : FTP server provided through IDX Exchange
