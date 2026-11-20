@@ -17,7 +17,17 @@ The project progresses from data preprocessing and exploratory data analysis to 
 - How effectively can tree esemble models predict california residential closing prices?
 
 - How effectively can quantile regression provide reliable estimates of uncertainty on housing price?
-  
+
+- Does model prediction performance differ in predictive accuracy and systematic prediction errors accross California of counties?
+
+- Which property, location, and market features contribute most strongly to model predictions?
+
+- How do individual property characteristics contribute to the model's highest and lowest sales prices?
+
+- How does predictive accuracy and directional error of the best model vary across residential property price ranges in Los Angeles county?
+
+- Do model perforn consistenly acorss California counties among residential counties with similar actual value of close price?
+
 
 ## Operation Order
 
@@ -291,8 +301,76 @@ file : **Bagging_Boosting_Model2**
 ---
 ### 5. Model Pipeline and Streamlit Deployment
 
-file: **Pipeline_Streamlit_Cloud**
+file: **Pipeline_Model_Fairneess_Deploy**
 
+#### 1) Model Explainability — SHAP
+
+SHAP (SHapley Additive exPlanations) was applied to interpret how individual property characteristics, geographic locations, and economic indicators contribute to predicted sale prices.
+
+The analysis focused on both global explainability, which identifies the most influential features across the dataset, and local explainability, which explains predictions for individual properties.
+
+- Global SHAP analysis: SHAP bar and beeswarm plots were used to examine feature importance, contribution magnitude, and the direction of feature effects.
+
+- Local SHAP analysis: Waterfall plots were used to explain how individual features contributed to the highest and lowest predicted property prices.
+
+- Feature correlation: Pearson and Spearman correlations were examined to identify highly correlated predictors that could complicate individual feature interpretation.
+
+- SHAP reliability: SHAP reconstruction was evaluated to verify that the calculated feature contributions closely matched the model's predictions.
+
+The results showed that Latitude, Longitude, and LivingArea were among the most influential predictors, highlighting the importance of both geographic location and physical property characteristics in California housing valuation.
+
+SHAP reconstruction produced a mean absolute difference of approximately $0.49 between reconstructed and original model predictions, supporting the numerical reliability of the explanations.
+
+However, SHAP values represent contributions to the model's predictions rather than causal relationships between property characteristics and sale prices.
+
+#### 2) Model Fairness — Prediction Performance Disparities
+
+Model fairness analysis was conducted to investigate whether the XGBoost model produced consistent prediction accuracy and systematic errors across geographic locations and property price ranges.
+
+The analysis evaluated three main research questions:
+
+- Does prediction accuracy and directional error differ across California counties?
+
+- Does model performance vary across residential property price ranges within Los Angeles County?
+
+- Do geographic performance differences persist when comparing properties within a similar actual sale-price range?
+
+Model performance was evaluated using Mean Absolute Error (MAE), Mean Absolute Percentage Error (MAPE), and Mean Error (Actual Price − Predicted Price) to measure both prediction accuracy and the direction of errors.
+
+#### 3) County-Level Analysis
+
+Prediction accuracy varied across California counties. The grouped Others category showed the highest MAPE at approximately 24.51%, followed by San Luis Obispo (14.53%) and Alameda (14.15%). In comparison, Riverside (10.06%) and San Bernardino (10.05%) showed the lowest MAPE among the reported groups.
+
+These results indicate that the model's predictive performance differs geographically, potentially reflecting differences in housing market characteristics, property distributions, and sample representation.
+
+#### 4) Los Angeles Property Price-Range Analysis
+
+Prediction performance was further evaluated across different sale-price ranges within Los Angeles County.
+
+Properties sold between $750K and $1M achieved the lowest MAPE at approximately 9.08%, while properties above $1.5M experienced the highest MAPE at approximately 15.04%.
+
+The model also tended to underpredict properties above $1.5M, with a mean error of approximately +$156,319, while properties below $750K tended to be overpredicted.
+
+These findings suggest that the model performs more accurately for middle-priced properties than for properties at the lower and upper ends of the Los Angeles price distribution.
+
+**Comparable-Price Geographic Analysis**
+
+To further investigate geographic performance differences, five California counties were compared using only properties with actual closing prices between $500K and $1M.
+
+San Diego showed the highest MAPE at approximately 12.04%, while Riverside achieved the lowest MAPE at approximately 7.70%.
+
+The differences in prediction accuracy remained even after restricting the comparison to a similar property price range, suggesting that property value alone does not fully explain geographic performance disparities.
+
+**Overall Findings**
+
+The model demonstrated strong overall predictive performance, but its accuracy and directional errors varied across counties and property price segments.
+
+These findings highlight the importance of evaluating machine learning models beyond aggregate performance metrics. However, the observed differences do not necessarily indicate algorithmic discrimination, as regional market characteristics, sample sizes, and other property-related factors may contribute to the disparities.
+
+Further analysis across additional property characteristics and comparable price ranges could help identify opportunities to improve prediction consistency
+
+
+#### 5) Model Streamlit Deployment
 After comparing the predictive models, the standard **XGBoost Regressor** was selected for deployment because it provided the strongest overall performance for predicting a single property sale price. The final model achieved approximately an 11.5% average percentage error, a $129,701 average dollar error, and explained about 88.6% of the variation in unseen property sale prices.
 
 The same `cleaned_data_eda.csv` dataset and predictor features used during the Bagging and Boosting analysis were retained to maintain consistency between model development and deployment.
