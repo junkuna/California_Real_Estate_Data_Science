@@ -21,7 +21,7 @@ The project progresses from data preprocessing and exploratory data analysis to 
 
 ## Operation Order
 
-**Data_Processing_idx** &rarr; **Cleaning_Dummies_data** &rarr; **Exploratory_Data_Analysis_idx** &rarr; **Regression_Model** &rarr; **Bagging_Boosting_Model_2** &rarr; **Pipeline_Streamlit_Cloud**
+**Data_Processing_idx** &rarr; **Cleaning_Dummies_data** &rarr; **Exploratory_Data_Analysis_idx** &rarr; **Regression_Model** &rarr; **Bagging_Boosting_Model_2** &rarr; **Pipeline_Model_Fairness_Deploy**
 
 
 **Deployed Lived Model**:
