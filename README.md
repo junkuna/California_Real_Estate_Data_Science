@@ -303,7 +303,7 @@ file : **Bagging_Boosting_Model2**
 
 file: **Pipeline_Model_Fairneess_Deploy**
 
-#### 1) Model Explainability — SHAP
+#### 1) Model Explainability - SHAP
 
 SHAP (SHapley Additive exPlanations) was applied to interpret how individual property characteristics, geographic locations, and economic indicators contribute to predicted sale prices.
 
@@ -323,7 +323,7 @@ SHAP reconstruction produced a mean absolute difference of approximately $0.49 b
 
 However, SHAP values represent contributions to the model's predictions rather than causal relationships between property characteristics and sale prices.
 
-#### 2) Model Fairness — Prediction Performance Disparities
+#### 2) Model Fairness - Prediction Performance Disparities
 
 Model fairness analysis was conducted to investigate whether the XGBoost model produced consistent prediction accuracy and systematic errors across geographic locations and property price ranges.
 
@@ -337,13 +337,13 @@ The analysis evaluated three main research questions:
 
 Model performance was evaluated using Mean Absolute Error (MAE), Mean Absolute Percentage Error (MAPE), and Mean Error (Actual Price − Predicted Price) to measure both prediction accuracy and the direction of errors.
 
-#### 3) County-Level Analysis
+#### 3) County Level Analysis
 
 Prediction accuracy varied across California counties. The grouped Others category showed the highest MAPE at approximately 24.51%, followed by San Luis Obispo (14.53%) and Alameda (14.15%). In comparison, Riverside (10.06%) and San Bernardino (10.05%) showed the lowest MAPE among the reported groups.
 
 These results indicate that the model's predictive performance differs geographically, potentially reflecting differences in housing market characteristics, property distributions, and sample representation.
 
-#### 4) Los Angeles Property Price-Range Analysis
+#### 4) Los Angeles Property Price Range Analysis
 
 Prediction performance was further evaluated across different sale-price ranges within Los Angeles County.
 
@@ -353,7 +353,7 @@ The model also tended to underpredict properties above $1.5M, with a mean error 
 
 These findings suggest that the model performs more accurately for middle-priced properties than for properties at the lower and upper ends of the Los Angeles price distribution.
 
-**Comparable-Price Geographic Analysis**
+**Comparable Price Geographic Analysis**
 
 To further investigate geographic performance differences, five California counties were compared using only properties with actual closing prices between $500K and $1M.
 
